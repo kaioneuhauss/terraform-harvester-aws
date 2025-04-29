@@ -8,7 +8,7 @@ Creator: Kaio Neuhauss dos Santos
 
 This project contains Terraform configurations to deploy:
 
-- Rancher Manager on AWS and Downstream clusters
+- Rancher Manager on AWS and Harvester
 - Downstream Kubernetes clusters on AWS and Harvester environments
 
 The project structure is split into two main folders:
