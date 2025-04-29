@@ -40,6 +40,8 @@ Note: You may need to add additional permissions if permission-related errors oc
 - A VPC properly configured (subnets, routes, NAT, etc.)
 - A Key Pair created and available under your Rancher node's home directory.
 
+Note: Terraform will create 4 vms. 1 bastion, where you will use to access the three main rancher vms. The Rancher vms were configured using only private IPs.
+
 ---
 
 ## 🛠️ Deploying to AWS
