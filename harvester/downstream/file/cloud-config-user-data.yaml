@@ -1,0 +1,50 @@
+#cloud-config
+package_update: true
+packages:
+  - qemu-guest-agent
+
+runcmd:
+  - - systemctl
+    - enable
+    - '--now'
+    - qemu-guest-agent.service
+  - - zypper
+    - -n
+    - in
+    - iptables
+  - - zypper
+    - -n
+    - in
+    - open-iscsi
+  - - systemctl
+    - enable
+    - --now
+    - iscsi
+  - - systemctl
+    - start
+    - iscsi
+users:
+  - name: kaio
+    primary-group: users
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    groups: wheel
+    lock_passwd: false
+    ssh-authorized-keys:
+      - >-
+        ssh-rsa
+        AAAAB3NzaC1yc2EAAAADAQABAAABgQDHxGCw6ISO5uPSv3lObsSJjToI2Cpq4zQ+EUKJgs2t+EnbUOm6GTfgBRqPN6Qco+BbKwg2by/MFIVBCRDdQGdfs322zx9aqVfrqWfY5PV+VE0kYEM/+7rquxKNMyk7gS17r8Nj/pbnB8uNijeqs1VvEA/8MAELA5nq5Kdb7eMPzDvzfQB3Mog0zna+3bqQepQUlndLKdvGJcnarlUQ/iGhrvAW65YHlVvDmUM+NT9RXQBdm4reWYAbWOaoLXs3vyS23Q7qMQ5wZiFgOWPgS678WIUF+G4MqKZ3z7S8FEsSdRTPf8Bwsnkus3N2mDrn9j+Qo0b14z2HosdVr8NdbJ10BfHuFhUAFLCxjxNGIzwnlDlH3MK97uhSdc+ryEkwMVpaED++qiQy4f3jje7p00HMUf7F8DRKq/xRj6ut/LYco50asg7jI++xRKJJYF1Rkwu5FVOcbQ59+jbZlNKTFEM/hbDbM0ycO5TAMAKWZVOlVxOmesRlj17uRy2upkE91Yc=
+        root@dns-haproxy
+
+ssh_authorized_keys:
+  - >-
+    ssh-rsa
+    AAAAB3NzaC1yc2EAAAADAQABAAABgQDHxGCw6ISO5uPSv3lObsSJjToI2Cpq4zQ+EUKJgs2t+EnbUOm6GTfgBRqPN6Qco+BbKwg2by/MFIVBCRDdQGdfs322zx9aqVfrqWfY5PV+VE0kYEM/+7rquxKNMyk7gS17r8Nj/pbnB8uNijeqs1VvEA/8MAELA5nq5Kdb7eMPzDvzfQB3Mog0zna+3bqQepQUlndLKdvGJcnarlUQ/iGhrvAW65YHlVvDmUM+NT9RXQBdm4reWYAbWOaoLXs3vyS23Q7qMQ5wZiFgOWPgS678WIUF+G4MqKZ3z7S8FEsSdRTPf8Bwsnkus3N2mDrn9j+Qo0b14z2HosdVr8NdbJ10BfHuFhUAFLCxjxNGIzwnlDlH3MK97uhSdc+ryEkwMVpaED++qiQy4f3jje7p00HMUf7F8DRKq/xRj6ut/LYco50asg7jI++xRKJJYF1Rkwu5FVOcbQ59+jbZlNKTFEM/hbDbM0ycO5TAMAKWZVOlVxOmesRlj17uRy2upkE91Yc=
+    root@dns-haproxy
+
+chpasswd:
+  expire: false
+ssh_pwauth: true
+user: kaio
+password: >-
+  $6$rounds=4096$Kxd7z5wAjIP6OiZm$s5XfMEVvdbcYPIp/qE3xidSy4CqIQmUQCi10Ub.wiAfecCu/CMUQ/jQR1q/86h.cI7VCpUSPTgpibyQZJAfcD.

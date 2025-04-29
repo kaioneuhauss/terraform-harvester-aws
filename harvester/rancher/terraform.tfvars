@@ -1,0 +1,5 @@
+rancher_version = "2.9.5"
+kubernetes_version = "v1.30.8+rke2r1"
+master_vip = "192.168.20.204"
+namespace_1 = "prod" 
+rancher_server_dns = "rancher.neuhauss.com.br"
