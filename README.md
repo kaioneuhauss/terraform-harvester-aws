@@ -119,7 +119,7 @@ The Terraform steps are similar to AWS but can take advantage of Terraform Works
    ```
 
 11. Destroy the environment if necessary:
-    ```bash
+   ```bash
    terraform destroy -var-file="terraform-dev.tfvars"
    ```
 
