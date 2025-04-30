@@ -47,23 +47,29 @@ Note: Terraform will create 4 vms. 1 bastion, where you will use to access the t
 ## 🛠️ Deploying to AWS
 
 1. Initialize the Terraform providers:
+   ```bash
    terraform init
+   ```
 
-2. Plan the deployment (using a specific variable file):
+3. Plan the deployment (using a specific variable file):
+   ```bash
    terraform plan -var-file="terraform-dev.tfvars" -out="plan"
+   ```
 
    (Here, the terraform-dev.tfvars file overrides the default variables.)
 
-3. Apply the plan:
+5. Apply the plan:
     ```bash
    terraform apply "plan"
     ```
-5. Destroy resources (order matters to avoid dependency errors):
+6. Destroy resources (order matters to avoid dependency errors):
+   ```bash
    terraform destroy -target=helm_release.rancher_server -var-file="terraform-dev.tfvars"
    terraform destroy -target=helm_release.cert_manager -var-file="terraform-dev.tfvars"
    terraform destroy -var-file="terraform-dev.tfvars"
+   ```
 
-6. You will need a domain name to point to your Load Balancer.
+8. You will need a domain name to point to your Load Balancer.
    (For this project, Cloudflare was used as the DNS provider.)
 
 ---
@@ -87,23 +93,35 @@ Before deploying to Harvester, ensure you have:
 The Terraform steps are similar to AWS but can take advantage of Terraform Workspaces to manage multiple environments (e.g., dev, prod):
 
 1. Create new workspaces:
+   ```bash
    terraform workspace new dev
    terraform workspace new prod
+   ```
 
-2. Select the workspace you want to work on:
+3. Select the workspace you want to work on:
+   ```bash
    terraform workspace select dev
+   ```
 
-3. Initialize Terraform:
+5. Initialize Terraform:
+   ```bash
    terraform init
+   ```
 
-4. Plan the deployment:
+7. Plan the deployment:
+   ```bash
    terraform plan -var-file="terraform-dev.tfvars" -out="plan"
+   ```
 
-5. Apply the plan:
+9. Apply the plan:
+    ```bash
    terraform apply "plan"
+   ```
 
-6. Destroy the environment if necessary:
+11. Destroy the environment if necessary:
+    ```bash
    terraform destroy -var-file="terraform-dev.tfvars"
+   ```
 
 ---
 
