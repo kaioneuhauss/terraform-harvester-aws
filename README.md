@@ -55,14 +55,15 @@ Note: Terraform will create 4 vms. 1 bastion, where you will use to access the t
    (Here, the terraform-dev.tfvars file overrides the default variables.)
 
 3. Apply the plan:
+    ```bash
    terraform apply "plan"
-
-4. Destroy resources (order matters to avoid dependency errors):
+    ```
+5. Destroy resources (order matters to avoid dependency errors):
    terraform destroy -target=helm_release.rancher_server -var-file="terraform-dev.tfvars"
    terraform destroy -target=helm_release.cert_manager -var-file="terraform-dev.tfvars"
    terraform destroy -var-file="terraform-dev.tfvars"
 
-5. You will need a domain name to point to your Load Balancer.
+6. You will need a domain name to point to your Load Balancer.
    (For this project, Cloudflare was used as the DNS provider.)
 
 ---
