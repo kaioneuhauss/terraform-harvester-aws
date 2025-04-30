@@ -114,7 +114,7 @@ The Terraform steps are similar to AWS but can take advantage of Terraform Works
    ```
 
 9. Apply the plan:
-    ```bash
+   ```bash
    terraform apply "plan"
    ```
 
